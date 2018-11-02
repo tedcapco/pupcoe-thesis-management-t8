@@ -4,9 +4,9 @@ var actions = {
   createUser: (userData,callback) => {
       const query =
       `INSERT INTO 
-        users (first_name,middle_name,last_name,email,password,user_type,contact_no) 
+        users (prefix,first_name,middle_name,last_name,email,password,user_type,contact_no) 
        VALUES 
-        ('${userData.firstName}','${userData.middleName}','${userData.lastName}','${userData.email}','${userData.password}','${userData.userType}','${userData.contactNo}') 
+        ('${userData.prefix}','${userData.firstName}','${userData.middleName}','${userData.lastName}','${userData.email}','${userData.password}','${userData.userType}','${userData.contactNo}') 
         RETURNING id`;
        db.query(query)
       .then(res => callback(res.rows))

@@ -13,7 +13,7 @@
       <div class="form-group">
           <!--content-->
           <div class="text-center">
-            <img src="/uploads/{{image}}" class="img-circle" alt="Cinque Terre" width="310" height="310"> 
+            <img src="/uploads/{{image}}" class="img-circle" alt=" image" width="310" height="310"> 
             <h1>{{student_id}}{{first_name}} {{middle_name}} {{last_name}}</h1>
             <h4>Class: {{batch_year}} - {{section}}</h4>
             <h4>Adviser: {{adviser_first_name}} {{adviser_middle_name}} {{adviser_last_name}}</h4>
@@ -21,12 +21,12 @@
             <div class="input-group">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
-                Browse Image&hellip; <input type="file" style="display: none;"  name="file-to-upload" multiple>
+                Browse Image<input type="file" style="display: none;"  name="file-to-upload" multiple>
                 </span>
               </label>
               <input type="text" class="form-control" readonly>
             </div><br>
-            <button type="submit" class="btn btn-success btn-sm"  id="loading" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Please wait...">Update</button>
+            <button type="submit" class="btn btn-success btn-lg"  id="loading" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Please wait...">Update</button>
            </form>
           </div><!--content-->
       </div>
@@ -89,8 +89,6 @@
     </div>
   </div><!--error-->
 </div>
-
-{{> footer }}
 
 <script type="text/javascript">
 function alert_success(){

@@ -265,9 +265,9 @@ app.get('/admin/registration', isAdmin, function(req, res) {
   admin.sectionList({},function(classList){
   	admin.facultyList({},function(facultyList){
   			res.render('cpe_admin/admin_registration',{
-          // first_name: req.user.first_name,
-          // middle_name: req.user.middle_name,
-          // last_name: req.user.last_name,
+           first_name: req.user.first_name,
+           middle_name: req.user.middle_name,
+           last_name: req.user.last_name,
   				class: classList,
           faculty: facultyList,
           admin:req.session.admin
@@ -281,6 +281,7 @@ app.post('/admin/registration/user', isAdmin, function (req, res) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
          admin.createUser(
 		  {
+        prefix: req.body.prefix,
 		    firstName: req.body.fname,
 		    middleName: req.body.mname,
 		    lastName: req.body.lname, 

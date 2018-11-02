@@ -24,6 +24,7 @@ html {
 body {
     padding-right:0px !important;
     margin-right:0px !important;
+    background: #ff6600;
 }
 
 .no-click {
@@ -71,8 +72,8 @@ body {
 }
 
 .box {
-    box-shadow: 0px 0px 15px 1px #666;
-    border: 1px solid;
+    box-shadow: 0px 0px 15px 1px #cccccc;
+    border: 1px solid #fff;
     border-radius: 1px;
     padding: 3%;
 }
