@@ -1,0 +1,89 @@
+<head>
+  <title>CpERMS | Compendium</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header }}
+
+<!--compendium-->
+<div class="d-flex justify-content-center small">
+  <div class= "well well-width">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-12 col-sm-12">
+          <!--search-->
+          <div class="container">
+            <!--search bar-->
+            <div class="row">
+              <div class="col-md-6">
+                <h4>PUP CpE Thesis Compendium</h4>
+                <hr class="botm-line">
+              </div>
+              <div class="col-md-6">
+                <br>
+                <input class="form-control fa" id="thesis_search" type="text" placeholder="&#xf002;  Search here..">
+                <hr>
+              </div>
+            </div>
+            <!--thesis list-->
+            <div class="col-md-2" style="margin: 0; padding: 0">
+              <select style="height: 2.5em" class="form-control gray" id="filterText" onchange="filterText()">
+                <option disabled selected hidden>Filter by Batch</option>
+                <option value='2010'>2010</option>
+                <option value='2011'>2011</option>
+              </select>
+            </div>
+            <br><br><br>
+            <table class="table table-striped" style="table-layout: fixed">
+              <thead>
+                <tr class="info">
+                  <th style="width: 10%">Number</th>
+                  <th style="width: 10%">Code</th>
+                  <th style="width: 35%">Title</th>
+                  <th style="width: 25%">Author</th>
+                  <th style="width: 20%">Adviser</th>
+                </tr>
+              </thead>
+              <tbody id="thesis_list" >
+                <tr class="content">
+                  <td></td>
+                  <td>201001</td>
+                  <td>Access Control to Home Devices using Mobile Technology</td>
+                  <td>Ryan Richard P. Aguila, Lorenz F. Amor, Joel J. Buenaventura, Bryan B. dela Paz</td>
+                  <td>Engr. Julius S. Cansino, Engr. Ronald D. Fernando</td>
+                </tr>
+                <tr class="content">
+                  <td></td>
+                  <td>201101</td>
+                  <td>DNA: Diagnostic Tool and Navigator for Automobiles</td>
+                  <td>Elton John A. Yazon</td>
+                  <td>Engr. Julius S. Cansino, Engr. Ronald D. Fernando</td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!--search-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--compendium-->
+
+{{> footer }}
+
+<script type="text/javascript" src="../js/search.js"></script><!--SEARCH-->
+<script>
+function filterText() {  
+  var rex = new RegExp($('#filterText').val());
+  if(rex =="/all/"){clearFilter()}else{
+    $('.content').hide();
+    $('.content').filter(function() {
+    return rex.test($(this).text());
+    }).show();
+  }
+}
+function clearFilter() {
+  $('.filterText').val('');
+  $('.content').show();
+}
+</script>

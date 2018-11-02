@@ -1,0 +1,91 @@
+<head>
+  <title>CpERMS | Signup</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header }}
+
+<!--signup-->
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 col-sm-6">
+      <div class="row box">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h1>WELCOME!</h1>
+            <hr class="redline">
+          </div>
+          <form method="POST" action="/signup" class="small">
+            <div class="row form-group">
+              <div class="col-sm-6">
+                Usertype
+                <select style="height: 2.5em" class="form-control gray" name="usertype" id="user_type" required>
+                  <option hidden>Usertype</option>
+                  <option value ="student" >Student</option>
+                  <option value ="faculty">Faculty</option>
+                  <option value ="guest">Guest Panel</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                Section
+                <select style="height: 2.5em" class="form-control gray" name="class" id="user_class" required>
+                  <option hidden>Section</option>
+                  {{#each class}}
+                  <option value ="{{this.id}}">Section: {{this.section}} Batch:{{batch_year}} </option>
+                  {{/each}}  
+                </select>
+              </div>
+            </div><!--usertype class batch-->
+            <div class="form-group">
+              First Name
+               <input type="name" name="fname" class="form-control" id="first_name" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+              Middle Name
+               <input type="name" name="mname" class="form-control" id="last_name" placeholder="Middle Name">
+            </div>
+            <div class="form-group">
+              Last Name
+               <input type="name" name="lname" class="form-control" id="last_name" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+              Contact Number (format: xxxx-xxx-xxxx)
+               <input type="tel" name="contacts" class="form-control" id="contact_number" placeholder="Contact Number" pattern="^\d{4}-\d{3}-\d{4}$" required>
+            </div>
+            <div class="form-group">
+              Email Address
+               <input type="email" name="email" class="form-control" id="email_address" placeholder="Email Address" required>
+            </div>
+            Password
+            <div class="form-group input-group">
+               <input type="password" name="password" class="form-control" id="user_password" placeholder="Password" required>
+               <div class="input-group-addon">
+                  <span toggle="#user_password" class="fa fa-fw fa-eye see-pw toggle-password"></span>
+               </div>
+            </div>
+            <div class="form-group">
+               <button type="submit" class="btn btn-success btn-block" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait...">Send Request</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--welcome admin-->
+
+<script type="text/javascript" src="../../js/seepassword.js"></script>
+
+<script type="text/javascript">
+$(function() {
+  $("#user_type").change(function() {
+    if ($(this).val() == "student") {
+      $("#user_class").prop("disabled", false);
+    }
+    else
+      $("#user_class").prop("disabled", true);
+  });
+});
+</script>
+
+{{> footer }}

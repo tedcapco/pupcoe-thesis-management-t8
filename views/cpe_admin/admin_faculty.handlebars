@@ -1,0 +1,252 @@
+<head>
+  <title>CpERMS | Faculty</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header_admin }}
+
+<!--admin faculty-->
+<br>
+<div style="width: 80%; position: absolute; right: 0;">
+  <div class="d-flex justify-content-center small">
+    <div class="container">
+      <div class="row">
+        <!--tabs-->
+        <div class="navbar navbar-static">
+          <div class="navbar-collapse collapse">
+            <!--inside nav-->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#manage_faculty" role="tab" aria-selected="true">Faculty</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#manage_committee" role="tab" aria-selected="true">Committee</a>
+              </li>
+            </ul><!--inside nav-->
+          </div>
+        </div>
+      </div>
+      <br>
+      <!--tab content-->
+      <div class="tab-content well">
+        <!--manage_faculty-->
+        <div id="manage_faculty" class="tab-pane fade in active">
+          <div class="d-flex">
+            <div class="col-md-12 col-sm-12">
+              <h4>Faculty</h4>
+              <hr class="botm-line">
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="col-md-12 col-sm-12">
+              <form method="post" action="/students/settings">
+                <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr class="info center">
+                      <th  style="width: 15%">Number</th>
+                      <th>Name</th>
+                      <th  style="width: 20%">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each faculties}}
+                    <tr class="center">
+                      <td class="section"></td>
+                      <td>{{prefix}} {{first_name}} {{middle_name}} {{last_name}}</td>
+                      <td class="id" hidden>{{id}}</td>
+                      <td class="prefix" hidden>{{prefix}}</td>
+                      <td class="fname" hidden>{{first_name}}</td>
+                      <td class="mname" hidden>{{middle_name}}</td>
+                      <td class="lname" hidden>{{last_name}}</td>
+                      <td class="contact" hidden>{{contact_no}}</td>
+                      <td class="email" hidden>{{email}}</td>
+                      <td>
+                        <button type="button" class="facultyUpdate btn btn-success btn-sm" data-toggle="modal" data-target="#view_faculty"><i class="fa fa-pencil" name="faculty_id"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div><!--manage_faculty-->
+        <!--manage_committee-->
+        <div id="manage_committee" class="tab-pane fade">
+          <div class="d-flex">
+            <div class="col-md-12 col-sm-12">
+              <h4>Select Committee</h4>
+              <hr class="botm-line">
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="col-md-12 col-sm-12">
+              <form method="post" action="/admin/committee/add">
+                <select style="height: 2.5em" class="form-control gray" name="faculty_id" class="form-control" required>
+                  {{#each notCommittee}}
+                  <option hidden> Faculty</option>
+                  <option value ="{{id}}">{{prefix}} {{first_name}} {{middle_name}} {{last_name}}</option>
+                  {{/each}}
+                </select>
+                <br>
+                <div class="footer form-group">
+                  <button type="submit" class="btn btn-success btn-sm pull-right" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."><i class="fa fa-user-plus"></i> Add</button>
+                </div>
+              </form>
+              <br>
+              <h4>Committee List</h4>
+              <hr class="botm-line">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr class="info center">
+                    <th style="width: 15%">Number</th>
+                    <th>Faculty Name</th>
+                    <th style="width: 15%">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each committee}}
+                <form method="POST" action="/admin/committee/remove">
+                  <input name="committee_id" value="{{id}}" hidden>
+                  <tr class="center">
+                    <td></td>
+                    <td>{{prefix}} {{first_name}} {{middle_name}} {{last_name}}</td>
+                    <td>
+                      <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </form>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div><!--manage_committee-->
+      </div><!--tab content-->
+    </div>
+  </div>
+</div>
+<!--admin faculty-->
+
+<!--MODAL-FORM view faculty-->
+<div class="modal fade small" id="view_faculty" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong> Update Faculty Info</strong></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/admin/faculty/update">
+          <div class="form-group">
+            <input id="id0" value="" type="text" name="user_id" class="form-control" hidden>
+            Prefix
+            <div class="form-group">
+               <input id="prefix0" value="" type="text" name="prefix" class="form-control" placeholder="Prefix">
+            </div>
+            First Name
+            <div class="form-group">
+               <input id="fname0" value="" type="text" name="first_name" class="form-control" placeholder="First Name">
+            </div>
+            Middle Name
+            <div class="form-group">
+               <input id="mname0" value="" type="text" name="middle_name" class="form-control" placeholder="Middle Name">
+            </div>
+            Last Name
+            <div class="form-group">
+               <input id="lname0" value="" type="text" name="last_name" class="form-control" placeholder="Last Name">
+            </div>
+            Contact Number
+            <div class="form-group">
+               <input id="contact0" value="" type="text" name="contact_no" class="form-control" placeholder="Contact Number">
+            </div>
+            Email Address
+            <div class="form-group">
+               <input id="email0" value="" type="text" name="email" class="form-control" placeholder="Email Address">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> make admin?</label>
+            </div>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-success btn-sm" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."> Update</button>
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- <div class="modal fade small" id="view_faculty" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong> Faculty Name</strong></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/students/settings">
+          <div class="form-group">
+            First Name
+            <div class="form-group">
+               <input type="text" name="fname" class="form-control" value="First Name from Database" placeholder="First name here">
+            </div>
+            Middle Name
+            <div class="form-group">
+               <input type="text" name="mname" class="form-control" value="Middle Name from Database" placeholder="Middle name here">
+            </div>
+            Last Name
+            <div class="form-group">
+               <input type="text" name="lname" class="form-control" value="Last Name from Database" placeholder="Last name here">
+            </div>
+            Contact Number
+            <div class="form-group">
+               <input type="text" name="contacts" class="form-control" value="Contact Number from Database" placeholder="Your contact number here">
+            </div>
+            Email Address
+            <div class="form-group">
+               <input type="text" name="email" class="form-control" value="Email Address from Database" placeholder="Your email address here">
+            </div>
+            Username
+            <div class="form-group">
+               <input type="text" name="username" class="form-control" value="Username from Database" placeholder="Your username here">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> make admin?</label>
+            </div>
+            <div class="pull-right">
+              <button type="button" class="btn btn-success btn-sm" data-dismiss="modal" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."> Update</button>
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+<script>
+  $('.facultyUpdate').click(function() {
+    var id = $(this).closest('tr').find('.id').text();
+    $('#id0').val(id);
+    var prefix = $(this).closest('tr').find('.prefix').text();
+    $('#prefix0').val(prefix);
+    var fname = $(this).closest('tr').find('.fname').text();
+    $('#fname0').val(fname);
+    console.log(fname);
+    var mname = $(this).closest('tr').find('.mname').text();
+    $('#mname0').val(mname);
+    var lname = $(this).closest('tr').find('.lname').text();
+    $('#lname0').val(lname);
+    var contact = $(this).closest('tr').find('.contact').text();
+    $('#contact0').val(contact);
+    var email = $(this).closest('tr').find('.email').text();
+    $('#email0').val(email);
+  });
+</script>

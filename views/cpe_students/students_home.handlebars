@@ -1,0 +1,132 @@
+<head>
+  <title>CpERMS | Home</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header_students }}
+
+<!--welcome-->
+<div class="container">
+  <div class="row col-md-12">
+    <div class="well col-md-12 col-sm-12 col-xs-12" style="margin: 1%">
+      <div class="form-group">
+          <!--content-->
+          <div class="text-center">
+            <img src="/uploads/{{image}}" class="img-circle" alt="Cinque Terre" width="310" height="310"> 
+            <h1>{{student_id}}{{first_name}} {{middle_name}} {{last_name}}</h1>
+            <h4>Class: {{batch_year}} - {{section}}</h4>
+            <h4>Adviser: {{adviser_first_name}} {{adviser_middle_name}} {{adviser_last_name}}</h4>
+            <form method="POST" action="/students/upload/image" enctype="multipart/form-data">
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-primary">
+                Browse Image&hellip; <input type="file" style="display: none;"  name="file-to-upload" multiple>
+                </span>
+              </label>
+              <input type="text" class="form-control" readonly>
+            </div><br>
+            <button type="submit" class="btn btn-success btn-sm"  id="loading" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Please wait...">Update</button>
+           </form>
+          </div><!--content-->
+      </div>
+    </div>
+  </div>
+</div><!--welcome-->
+<br>
+
+<!--members-->
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-12 col-sm-12">
+      <h4>Group Members</h4>
+      <hr class="botm-line">
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row col-md-12 justify-content-center align-items-center">
+    {{#each group_id}}
+    <div class="well col-md-5 col-sm-5 col-xs-5" style="margin: 0.5% 2%">
+      <div class="form-group">
+        <blockquote class="text-center">
+          <img src="/uploads/{{image}}" class="img-circle" alt="Cinque Terre" width="210" height="210">
+          <h3><strong>{{first_name}} {{middle_name}} {{last_name}}</strong></h3>
+          <h4><i class="fa fa-phone"></i> {{contact_no}}</h4>
+          <h4><i class="fa fa-envelope"></i> {{email}}</h4>
+        </blockquote>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div><!--members-->
+
+<!--NO RESULT DISPLAY-->
+<h1 class="text-center" hidden><i class="fa fa-search fa-fw"></i>No Result!</h1>
+
+<!--PAGE NOT AVAILABLE DISPLAY-->
+<h1 class="text-center" hidden><i class="fa fa-warning fa-fw"></i>Page not Available</h1>
+
+<!--SUCCESS and ERROR NOTIF-->
+<div class="container" hidden>
+  <div class="row justify-content-center align-items-center">
+    <button class="btn btn-success" onclick="alert_success()">SUCCESS</button>
+    <button class="btn btn-danger" onclick="alert_error()">ERROR</button>
+  </div>
+</div>
+
+<div class="container" hidden>
+  <div class="row justify-content-center align-items-center">
+    <div class="alert alert-success alert_success" id="success">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong>
+    </div>
+  </div>
+</div><!--success-->
+<div class="container" hidden>
+  <div class="row justify-content-center align-items-center">
+    <div class="alert alert-danger alert_error" id="danger">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>
+    </div>
+  </div><!--error-->
+</div>
+
+{{> footer }}
+
+<script type="text/javascript">
+function alert_success(){
+  $(".alert_success").show().delay(1500);
+  setTimeout(function(){
+    $(".alert_success").fadeOut().delay(1000); 
+  }, 1500);
+}
+
+function alert_error(){
+  $(".alert_error").show().delay(1500);
+  setTimeout(function(){
+    $(".alert_error").fadeOut().delay(1000); 
+  }, 1500);
+}
+
+$(function() {
+  // We can attach the `fileselect` event to all file inputs on the page
+  $(document).on('change', ':file', function() {
+    var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+  });
+
+  // We can watch for our custom `fileselect` event like this
+  $(document).ready( function() {
+    $(':file').on('fileselect', function(event, numFiles, label) {
+      var input = $(this).parents('.input-group').find(':text'),
+        log = numFiles > 1 ? numFiles + ' files selected' : label;
+      if( input.length ) {
+        input.val(log);
+      } else {
+        if( log ) alert(log);
+      }
+    });
+  });
+});
+</script><!--SUCCESS and ERROR NOTIF-->
