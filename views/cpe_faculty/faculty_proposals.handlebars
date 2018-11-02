@@ -1,0 +1,153 @@
+<head>
+  <title>CpERMS | Committee</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header_faculty }}
+
+<!--faculty advisory-->
+<div class="d-flex justify-content-center small">
+  <div>
+    <div class="navbar navbar-static">
+      <div class="navbar-collapse collapse">
+        <!--inside nav-->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#for_review" role="tab" aria-selected="true">For Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#reviewed" role="tab" aria-selected="false">Reviewed</a>
+          </li>
+        </ul><!--inside nav-->
+      </div>
+    </div>
+    <br>
+    <div class="tab-content well">
+      <!--for_review-->
+      <div id="for_review" class="tab-pane fade in active">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-12 col-sm-12">
+              <h4>For Review</h4>
+              <hr class="botm-line">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr class="info center">
+                      <th style="width: 10%">Number</th>
+                      <th style="width: 10%">Members</th>
+                      <th>Title</th>
+                      <th style="width: 25%">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each thesisList}}
+                    <tr class="center">
+                      <td></td>
+                      <td>4</td>
+                      <td class="title">{{this.thesis_title}}</td>
+                      <td class="thesis_id" hidden>{{this.id}}</td>
+                      <td class="abstract" hidden>{{this.abstract}}</td>
+                      <td class="inline_block">
+                        <button type="button" class="onCLick btn btn-success btn-sm" data-toggle="modal" data-target="#review"><i class="fa fa-eye"></i> Review</button>
+                        <form action="/downloadFile" method="post">
+                          <input type = "name" name="filename" value ="{{this.upload}}" hidden>
+                          <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Download</button>
+                        </form>
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div><!--for_review-->
+      <!--reviewed-->
+      <div id="reviewed" class="tab-pane fade">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-12 col-sm-12">
+              <h4>Reviewed</h4>
+              <hr class="botm-line">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr class="info center">
+                    <th>Number</th>
+                    <th>Members</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each reviewedCommittee}}
+                  <tr class="center">
+                    <td></td>
+                    <td>4</td>
+                    <td>{{this.thesis_title}}</td>
+                    <td>{{this.status}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div><!--reviewed--> 
+
+<!--MODAL-FORM review-->
+<div class="modal fade small" id="review" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id = "title0"><strong> Title</strong></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Approved by: <strong>{{first_name}} {{middle_name}} {{last_name}}</strong></h4>
+        <hr>
+        <!--abtract-->
+        <h4 class="modal-title">Abstract</h4><br>
+        <p id="abstract0" class="justify" style="margin: 0 2%"></p>
+        <hr><!--abtract-->
+        <!--comments and status-->
+        <form method="post" action="/adviser/mor/vote">
+          <div class="form-group">
+            <div class="form-group">
+              <textarea type="text" style="height: 80px" name="comment" placeholder="Your comments and suggestions here" class="form-control"></textarea>
+            </div>
+            <div class="form-group">           
+             <input type = "number" name="thesis_id" id= "thesis_id0" value = "" hidden>
+             <input type="radio" name="grade" value="9"> Approved<br>
+             <input type="radio" name="grade" value="10">Disapproved
+            </div>
+            <div class="pull-right footer">
+              <button type="submit" class="btn btn-success btn-sm" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait...">Done</button>
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </form><!--comments and status-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.onCLick').click(function() {
+   var abstract =  $(this).closest('td').prev('.abstract').text();
+   $('#abstract0').html(abstract);
+   var title =  $(this).closest('tr').find('.title').text();
+   $('#title0').html(title);
+   var id =  $(this).closest('tr').find('.thesis_id').text();
+   $('#thesis_id0').val(id);
+});
+
+$('#classhandled').on('change', function() {
+     $('#submitClassId').click();
+   });
+
+</script>
+
+{{> footer }}

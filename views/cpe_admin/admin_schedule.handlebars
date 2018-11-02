@@ -1,0 +1,106 @@
+<head>
+  <title>CpERMS | Schedule</title>
+  <!-- LOCAL -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+{{> header_admin }}
+
+<!--admin schedule-->
+<br>
+<div style="width: 80%; position: absolute; right: 0;">
+  <div class="d-flex justify-content-center small">
+    <div class="container">
+      <div class="row">
+        <!--tabs-->
+        <div class="navbar navbar-static">
+          <div class="navbar-collapse collapse">
+            <!--inside nav-->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#title_def" role="tab" aria-selected="true">Title Defense</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#def_1" role="tab" aria-selected="true">Defense I</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#final_def" role="tab" aria-selected="true">Final Defense</a>
+              </li>
+            </ul><!--inside nav-->
+          </div>
+        </div>
+      </div>
+      <br>
+      <!--tab content-->
+      <div class="tab-content well">
+        <!--title_def-->
+        <div id="title_def" class="tab-pane fade in active">
+          <div class="d-flex">
+            <div class="col-md-12 col-sm-12">
+              <h4>Groups</h4>
+              <hr class="botm-line">
+              <form method="post" action="">
+                <div class="col-sm-6">
+                  <select style="height: 2.5em" class="form-control gray" name="class_id" class="form-control" id="classhandled" required>
+                    <option hidden> Day</option>
+                    <option value="{{this.id}}"></option>
+                  </select><br>
+                </div>
+                <div class="col-sm-6">
+                  <select style="height: 2.5em" class="form-control gray" name="class_id" class="form-control" id="classhandled" required>
+                    <option hidden> Room</option>
+                    <option value="{{this.id}}"></option>
+                  </select>
+                </div>
+                <input id='submitClassId' type="submit" name="submit" value="Submit"hidden>
+                <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr class="info center">
+                      <th style="width: 15%">Number</th>
+                      <th>Title</th>
+                      <th style="width: 15%"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="center">
+                     <td></td>
+                     <td></td>
+                     <td> 
+                        <input class="form-control" type="checkbox" name="studentid" value="{{this.student_id}}"> 
+                     </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <input type="text" name="classid" class="form-control" value = "{{classid}}"id="first_name" placeholder="Group name here..." hidden>
+                <div class="footer form-group">
+                  <button type="submit" class="btn btn-success btn-sm pull-right" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."><i class="fa fa-check"></i> Done</button>
+                </div>
+              </form>
+              <br>
+              <h4>Scheduled</h4>
+              <hr class="botm-line">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr class="info center">
+                    <th style="width: 10%">Number</th>
+                    <th style="width: 10%">Day</th>
+                    <th style="width: 10%">Room</th>
+                    <th>Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="center">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div><!--title_def-->
+      </div><!--tab content-->
+    </div>
+  </div>
+</div><!--admin schedule-->
