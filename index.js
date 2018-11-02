@@ -176,8 +176,6 @@ function isGuest(req, res, next) {
 res.redirect('/');
 }
 }
-//RAAAALLLLPPPHHHHHHHHHHHHHHH!
-
 
 //--------------------------------------------------
 app.get('/logout', function(req, res){
@@ -196,7 +194,7 @@ app.post('/uploads', upload.single('file-to-upload'), (req, res) => {
 });
 
 app.get('/', function (req, res) {
-  res.render('home', {
+  res.render('cpe_admin/admin_login', {
   });
 });
 
@@ -222,9 +220,9 @@ app.get('/signup', function(req, res) {
     
   });
 });
-//--------------------------------------------------
+//
 
-//ADMIN---------------------------------------------
+//ADMIN
 app.get('/login', function(req, res) {
 	res.render('cpe_admin/admin_login',{
 		
@@ -872,9 +870,9 @@ app.get('/students/settings', isStudent,function(req, res) {
 		
 	});
 });
-//STUDENT---------------------------------------------
+//STUDENT--------
 
-//GUEST PANEL---------------------------------------------
+//GUEST PANEL----
 app.get('/guest_panel/home',isGuest,function(req, res) {
   res.render('cpe_guest_panel/guest_panel_home',{
         first_name: req.user.first_name,

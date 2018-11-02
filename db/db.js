@@ -23,5 +23,3 @@ module.exports = {
     return client.query(text, callback)
   }
 }
-
-

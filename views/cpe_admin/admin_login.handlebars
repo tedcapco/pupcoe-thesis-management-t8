@@ -1,5 +1,5 @@
 <head>
-	<title>CpERMS | Login</title>
+	<title>COE Thesis Management</title>
 	<!-- LOCAL -->
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
@@ -13,21 +13,21 @@
       <div class="row box">
         <div class="col-md-12">
           <div class="text-center">
-          	<h1>WELCOME!</h1>
+          	<h1>Welcome to Thesis Management!</h1>
             <hr class="redline">
           </div>
           <form method="POST" action="/login">
             <div class="form-group">
                <label class="sr-only" for="email">Email</label>
-               <input type="text" name="email" class="form-control icon-placeholder" id="email" placeholder="&#xf0e0;   Email" required>
+               <input type="text" name="email" class="form-control icon-placeholder" id="email" placeholder="Enter your Email" required>
             </div>
             <div class="form-group">
               <label class="sr-only" for="admin_password">Password</label>
-              <input type="password" name="password" class="form-control icon-placeholder" id="admin_password" placeholder="&#xf023;   Password" required>
+              <input type="password" name="password" class="form-control icon-placeholder" id="admin_password" placeholder="Enter your Password" required>
               <div class="help-block text-right small"><a href="/forgot_password">Forgot password?</a></div>
             </div>
             <div class="form-group">
-               <button type="submit" class="btn btn-success btn-block" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait...">Login</button>
+               <button type="submit" class="btn btn-success btn-lg" id="loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait...">Login</button>
             </div>
           </form>
         </div>
