@@ -261,7 +261,7 @@ app.get('/admin/dashboard',isAdmin, function(req, res) {
   });
 });
 
-app.get('/admin/registration', function(req, res) {
+app.get('/admin/registration', isAdmin, function(req, res) {
   admin.sectionList({},function(classList){
   	admin.facultyList({},function(facultyList){
   			res.render('cpe_admin/admin_registration',{
@@ -276,7 +276,7 @@ app.get('/admin/registration', function(req, res) {
     });
 });
 
-app.post('/admin/registration/user', function (req, res) {
+app.post('/admin/registration/user', isAdmin, function (req, res) {
 		bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
          admin.createUser(

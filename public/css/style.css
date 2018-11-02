@@ -151,6 +151,8 @@ h1, h2, h3, h4, h5, h6 {
 
 a, a:hover, a:focus, a:active {
     outline: none;
+    font-size: 20px;
+    color: #fff;
 }
 
 hr.botm-line {
@@ -193,6 +195,7 @@ hr.redline {
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
     color: #EA6045;
+    font-size: 20px;
 }
 
 .top-nav-collapse {
@@ -218,6 +221,7 @@ hr.redline {
     color: #fff;
     text-transform: uppercase;
     background-color: #800000;
+    font-size: 25px;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -231,6 +235,7 @@ hr.redline {
 	color: #fff;
     text-transform: uppercase;
     background-color: #800000);
+    font-size: 25px;
 }
 
 .affix {
@@ -239,6 +244,7 @@ hr.redline {
 
 .affix .navbar-nav > li > a:hover, .affix .navbar-nav > li > a:focus {
     background-color: #800000 !important;
+    font-size: 25px;
 }
 
 #home {
@@ -303,4 +309,7 @@ hr.redline {
     background-color: #808080;
     width: 100%;
     height: 100px;
+}
+.helloadmin {
+    font-size: 72px;
 }
