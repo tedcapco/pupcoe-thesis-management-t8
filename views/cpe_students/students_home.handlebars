@@ -48,13 +48,9 @@
   <div class="row col-md-12 justify-content-center align-items-center">
     {{#each group_id}}
     <div class="well col-md-5 col-sm-5 col-xs-5" style="margin: 0.5% 2%">
-      <div class="form-group">
-        <blockquote class="text-center">
-          <img src="/uploads/{{image}}" class="img-circle" alt="Cinque Terre" width="210" height="210">
+      <div class="form-group text-center">
           <h3><strong>{{first_name}} {{middle_name}} {{last_name}}</strong></h3>
-          <h4><i class="fa fa-phone"></i> {{contact_no}}</h4>
-          <h4><i class="fa fa-envelope"></i> {{email}}</h4>
-        </blockquote>
+          <h4>{{email}}</h4>
       </div>
     </div>
     {{/each}}
